@@ -4,6 +4,12 @@ from menu import ControladorSistema
 if __name__ == "__main__":
     print(f"""
 
+Desarrolladores:
+• José Javier Acevedo Ruiz
+• Danyelle Steven Giraldo Jimenez
+• Samuel Mateo Chacon Ojeda
+• Hanner Ferley Sogamoso Jimenez
+
 CARACTERÍSTICAS PRINCIPALES:
 
 1.  DESCARGA RED VIAL 
