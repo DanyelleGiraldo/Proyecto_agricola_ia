@@ -30,7 +30,7 @@ class ControladorSistema:
         print(f"{'='*70}")
         
         print(f"\n[1/4] Red vial de Bucaramanga...")
-        archivo_red = "bucaramanga_red_vial.graphml"
+        archivo_red = "bucaramanga_floridablanca_red_vial_manzanas.graphml"
         
         if os.path.exists(archivo_red):
             print(f"    Archivo encontrado, cargando...")
