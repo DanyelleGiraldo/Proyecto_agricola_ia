@@ -6,15 +6,15 @@ if __name__ == "__main__":
 
 CARACTERÍSTICAS PRINCIPALES:
 
-1.  DESCARGA RED VIAL REAL
+1.  DESCARGA RED VIAL 
    • Usa OSMnx para obtener todas las calles de Bucaramanga
-   • Miles de intersecciones y calles reales
+   • Miles de intersecciones y calles 
    • Información completa: distancias, velocidades, tiempos
 
 
-ENTRENA IA CON RUTAS REALES
+ENTRENA IA CON RUTAS 
    • Calcula rutas sobre calles verdaderas
-   • La IA aprende patrones de rutas reales
+   • La IA aprende patrones de rutas 
 
 VISUALIZACIÓN COMPLETA
    • Mapas interactivos con Folium

@@ -22,7 +22,7 @@ class DescargadorRedVial:
             
             else:
 
-                bbox = (7.20, 7.00, -73.04, -73.18)
+                bbox = (8.0, 5.5, -72.5, -74.5)
                 
                 print(f"    Usando bbox: Norte={bbox[0]}, Sur={bbox[1]}")
                 print(f"                   Este={bbox[2]}, Oeste={bbox[3]}")

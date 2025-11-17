@@ -30,7 +30,7 @@ class EntrenadorIA:
         nodos_santander: Dict[str, Nodo]
     ) -> Tuple[np.ndarray, np.ndarray]:
 
-        print(f"\n\n GENERANDO DATASET CON RUTAS REALES")
+        print(f"\n\n GENERANDO DATASET CON RUTAS ")
         
         X = []
         y = []
@@ -38,7 +38,7 @@ class EntrenadorIA:
         nodos_ids = list(nodos_santander.keys())
         total_pares = len(nodos_ids) * (len(nodos_ids) - 1)
         
-        print(f"Calculando {total_pares} rutas reales...")        
+        print(f"Calculando {total_pares} rutas ...")        
         contador = 0
         rutas_exitosas = 0
         
@@ -58,7 +58,7 @@ class EntrenadorIA:
                     )
                     
                     if ruta and 'distancia_total_km' in info:
-                        features = ExtractorCaracteristicas.extraer_features_ruta_real(
+                        features = ExtractorCaracteristicas.extraer_features(
                             G_vial,
                             nodos_santander,
                             origen_id,
@@ -78,7 +78,7 @@ class EntrenadorIA:
     
     def entrenar(self, X: np.ndarray, y: np.ndarray):
         
-        print(f"ENTRENANDO IA CON RUTAS REALES")
+        print(f"ENTRENANDO IA CON RUTAS")
         
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, random_state=42
@@ -114,7 +114,7 @@ class EntrenadorIA:
         print(f"{'='*70}")
         print(f"\n Train: MAE={mae_train:.2f} km | R²={r2_train:.4f}")
         print(f" Test:  MAE={mae_test:.2f} km | R²={r2_test:.4f}")
-        print(f"\n La IA aprendió de {len(X)} rutas reales ")
+        print(f"\n La IA aprendió de {len(X)} rutas  ")
     
     def predecir(self, features: np.ndarray) -> float:
         if not self.entrenado:

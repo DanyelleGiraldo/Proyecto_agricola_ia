@@ -12,39 +12,68 @@ class IntegradorNodos:
 
         zonas = {
             'parcelas': [
-                {'id': 'P001', 'nombre': 'Finca Los Manzanos - Bosconia', 'lat': 7.1500, 'lon': -73.0800, 'prod': 180},
-                {'id': 'P002', 'nombre': 'Huerto El Cacique - Suratá', 'lat': 7.1700, 'lon': -73.0650, 'prod': 220},
-                {'id': 'P003', 'nombre': 'Finca La Esperanza - Pantano', 'lat': 7.1800, 'lon': -73.1100, 'prod': 150},
+                # ZONA METROPOLITANA BUCARAMANGA
+                {'id': 'P001', 'nombre': 'Finca Los Manzanos - Bosconia', 'lat': 7.1500, 'lon': -73.0800, 'prod': 180, 'mun': 'Bucaramanga'},
+                {'id': 'P002', 'nombre': 'Huerto El Cacique - Suratá', 'lat': 7.1700, 'lon': -73.0650, 'prod': 220, 'mun': 'Bucaramanga'},
+                {'id': 'P003', 'nombre': 'Finca La Esperanza - Pantano', 'lat': 7.1800, 'lon': -73.1100, 'prod': 150, 'mun': 'Bucaramanga'},
+                {'id': 'P004', 'nombre': 'Finca Villa Rosario - Altos', 'lat': 7.0800, 'lon': -73.0500, 'prod': 280, 'mun': 'Floridablanca'},
+                {'id': 'P005', 'nombre': 'Huerto San José - Ruitoque', 'lat': 7.0950, 'lon': -73.0700, 'prod': 240, 'mun': 'Floridablanca'},
                 
-                {'id': 'P004', 'nombre': 'Finca Villa Rosario - Altos de Floridablanca', 'lat': 7.0800, 'lon': -73.0500, 'prod': 280},
-                {'id': 'P005', 'nombre': 'Huerto San José - Vereda Ruitoque', 'lat': 7.0950, 'lon': -73.0700, 'prod': 240},
-                {'id': 'P006', 'nombre': 'Finca El Vergel - Cañaveral', 'lat': 7.0650, 'lon': -73.0600, 'prod': 200},
+                # PROVINCIA DE GARCÍA ROVIRA (Clima frío - alta producción)
+                {'id': 'P006', 'nombre': 'Finca Las Nieves - Málaga', 'lat': 6.7000, 'lon': -72.7333, 'prod': 350, 'mun': 'Málaga'},
+                {'id': 'P007', 'nombre': 'Huerto San Pablo - Concepción', 'lat': 6.7667, 'lon': -72.7000, 'prod': 320, 'mun': 'Concepción'},
+                {'id': 'P008', 'nombre': 'Finca El Alto - Carcasí', 'lat': 6.6333, 'lon': -72.6333, 'prod': 280, 'mun': 'Carcasí'},
+                {'id': 'P009', 'nombre': 'Huerto La Cumbre - San Andrés', 'lat': 6.8167, 'lon': -72.8500, 'prod': 300, 'mun': 'San Andrés'},
+                {'id': 'P010', 'nombre': 'Finca El Bosque - Cerrito', 'lat': 6.8333, 'lon': -72.6833, 'prod': 260, 'mun': 'Cerrito'},
                 
-                {'id': 'P007', 'nombre': 'Finca Las Delicias - La Cumbre', 'lat': 7.0100, 'lon': -73.0450, 'prod': 190},
-                {'id': 'P008', 'nombre': 'Huerto San Rafael - El Rasgón', 'lat': 6.9950, 'lon': -73.0500, 'prod': 210},
+                # PROVINCIA DE SOTO (Zona cafetera - producción media)
+                {'id': 'P011', 'nombre': 'Finca La Pradera - Piedecuesta', 'lat': 7.0833, 'lon': -73.0500, 'prod': 200, 'mun': 'Piedecuesta'},
+                {'id': 'P012', 'nombre': 'Huerto El Roble - Girón', 'lat': 7.0667, 'lon': -73.1667, 'prod': 180, 'mun': 'Girón'},
+                {'id': 'P013', 'nombre': 'Finca Las Acacias - Lebrija', 'lat': 7.1167, 'lon': -73.2167, 'prod': 220, 'mun': 'Lebrija'},
+                {'id': 'P014', 'nombre': 'Huerto San Isidro - Rionegro', 'lat': 7.1500, 'lon': -73.1500, 'prod': 190, 'mun': 'Rionegro'},
                 
-                {'id': 'P009', 'nombre': 'Finca El Pomar - Lagos del Cacique', 'lat': 7.1100, 'lon': -73.0900, 'prod': 160},
-                {'id': 'P010', 'nombre': 'Huerto Santa Rita - Morrorico', 'lat': 7.0900, 'lon': -73.0850, 'prod': 175},
+                # PROVINCIA DE VÉLEZ (Templado - producción diversificada)
+                {'id': 'P015', 'nombre': 'Finca El Paraíso - Vélez', 'lat': 6.0167, 'lon': -73.6667, 'prod': 240, 'mun': 'Vélez'},
+                {'id': 'P016', 'nombre': 'Huerto La Samaria - Barbosa', 'lat': 5.9333, 'lon': -73.6167, 'prod': 210, 'mun': 'Barbosa'},
+                {'id': 'P017', 'nombre': 'Finca Las Brisas - Guavatá', 'lat': 5.9500, 'lon': -73.7000, 'prod': 230, 'mun': 'Guavatá'},
+                {'id': 'P018', 'nombre': 'Huerto El Mirador - Puente Nacional', 'lat': 5.8833, 'lon': -73.6833, 'prod': 195, 'mun': 'Puente Nacional'},
                 
-                {'id': 'P011', 'nombre': 'Finca Los Arrayanes - Café Madrid', 'lat': 7.1350, 'lon': -73.1050, 'prod': 165},
-                {'id': 'P012', 'nombre': 'Huerto El Poblado - Zona Norte', 'lat': 7.1450, 'lon': -73.1150, 'prod': 185},
+                # PROVINCIA DE GUANENTÁ (Altiplano - especializada)
+                {'id': 'P019', 'nombre': 'Finca La Colina - San Gil', 'lat': 6.5500, 'lon': -73.1333, 'prod': 270, 'mun': 'San Gil'},
+                {'id': 'P020', 'nombre': 'Huerto Los Pinos - Barichara', 'lat': 6.6333, 'lon': -73.2167, 'prod': 180, 'mun': 'Barichara'},
+                {'id': 'P021', 'nombre': 'Finca El Descanso - Curití', 'lat': 6.6000, 'lon': -73.0667, 'prod': 220, 'mun': 'Curití'},
+                {'id': 'P022', 'nombre': 'Huerto San Martín - Aratoca', 'lat': 6.7000, 'lon': -73.0167, 'prod': 200, 'mun': 'Aratoca'},
+                
+                # PROVINCIA DE COMUNERA (Sur - emergente)
+                {'id': 'P023', 'nombre': 'Finca La Esperanza - El Guacamayo', 'lat': 6.2500, 'lon': -73.5000, 'prod': 160, 'mun': 'El Guacamayo'},
+                {'id': 'P024', 'nombre': 'Huerto San Carlos - Charalá', 'lat': 6.2833, 'lon': -73.1500, 'prod': 175, 'mun': 'Charalá'},
+                {'id': 'P025', 'nombre': 'Finca Los Laureles - Encino', 'lat': 6.1500, 'lon': -73.0833, 'prod': 190, 'mun': 'Encino'},
             ],
             
             'centros': [
-                {'id': 'C001', 'nombre': 'Centroabastos Bucaramanga', 'lat': 7.1250, 'lon': -73.1100},
-                {'id': 'C002', 'nombre': 'Plaza Guarín - Centro Histórico', 'lat': 7.1300, 'lon': -73.1250},
-                {'id': 'C003', 'nombre': 'Centro de Acopio Cabecera', 'lat': 7.1100, 'lon': -73.1200},
-                
-                {'id': 'C004', 'nombre': 'Acopio Cañaveral', 'lat': 7.0700, 'lon': -73.0650},
-                {'id': 'C005', 'nombre': 'Centro de Distribución Lagos 2', 'lat': 7.0850, 'lon': -73.0900},
+                # Centros de Acopio Regionales
+                {'id': 'C001', 'nombre': 'Centroabastos Bucaramanga', 'lat': 7.1250, 'lon': -73.1100, 'mun': 'Bucaramanga'},
+                {'id': 'C002', 'nombre': 'Centro de Acopio Málaga', 'lat': 6.7000, 'lon': -72.7333, 'mun': 'Málaga'},
+                {'id': 'C003', 'nombre': 'Centro de Acopio San Gil', 'lat': 6.5500, 'lon': -73.1333, 'mun': 'San Gil'},
+                {'id': 'C004', 'nombre': 'Centro de Acopio Vélez', 'lat': 6.0167, 'lon': -73.6667, 'mun': 'Vélez'},
+                {'id': 'C005', 'nombre': 'Centro de Acopio Barrancabermeja', 'lat': 7.0667, 'lon': -73.8500, 'mun': 'Barrancabermeja'},
+                {'id': 'C006', 'nombre': 'Centro de Acopio Socorro', 'lat': 6.4667, 'lon': -73.2667, 'mun': 'Socorro'},
             ],
             
             'plantas': [
-                {'id': 'PL001', 'nombre': 'Procesadora de Frutas Santander - Zona Industrial', 'lat': 7.1350, 'lon': -73.1300},
-                {'id': 'PL002', 'nombre': 'Planta de Jugos Naturales - Girardot', 'lat': 7.1200, 'lon': -73.1150},
-                
-                {'id': 'PL003', 'nombre': 'Agroindustrial El Bosque', 'lat': 7.0650, 'lon': -73.0750},
-                {'id': 'PL004', 'nombre': 'Procesadora de Manzanas Floridablanca', 'lat': 7.0800, 'lon': -73.0800},
+                # Plantas Procesadoras Estratégicas
+                {'id': 'PL001', 'nombre': 'Procesadora Santander - B/manga', 'lat': 7.1350, 'lon': -73.1300, 'mun': 'Bucaramanga'},
+                {'id': 'PL002', 'nombre': 'Planta de Jugos Málaga', 'lat': 6.7200, 'lon': -72.7500, 'mun': 'Málaga'},
+                {'id': 'PL003', 'nombre': 'Procesadora San Gil', 'lat': 6.5600, 'lon': -73.1400, 'mun': 'San Gil'},
+                {'id': 'PL004', 'nombre': 'Agroindustrial Vélez', 'lat': 6.0300, 'lon': -73.6700, 'mun': 'Vélez'},
+            ],
+            
+            'mercados': [
+                # Principales Mercados de Destino
+                {'id': 'M001', 'nombre': 'Mercado Campesino B/manga', 'lat': 7.1300, 'lon': -73.1250, 'mun': 'Bucaramanga'},
+                {'id': 'M002', 'nombre': 'Plaza de Mercado San Gil', 'lat': 6.5500, 'lon': -73.1333, 'mun': 'San Gil'},
+                {'id': 'M003', 'nombre': 'Mercado Municipal Málaga', 'lat': 6.7000, 'lon': -72.7333, 'mun': 'Málaga'},
+                {'id': 'M004', 'nombre': 'Mercado Vélez', 'lat': 6.0167, 'lon': -73.6667, 'mun': 'Vélez'},
             ]
         }
         

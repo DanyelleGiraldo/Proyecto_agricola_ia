@@ -146,7 +146,7 @@ class ControladorSistema:
             print(f"{'='*70}")
             print(f"\n OPCIONES DISPONIBLES:\n")
             print(f"  1. Inicializar sistema (descargar red vial)")
-            print(f"  2. Entrenar IA con rutas reales")
+            print(f"  2. Entrenar IA con rutas ")
             print(f"  3.  Calcular y visualizar ruta específica")
             print(f"  4. Simular factores externos")
             print(f"  5. Comparar IA vs Rutas Reales")

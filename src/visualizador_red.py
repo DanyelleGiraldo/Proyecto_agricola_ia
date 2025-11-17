@@ -75,12 +75,12 @@ class VisualizadorRed:
         titulo_html += '</div>'
         mapa.get_root().html.add_child(folium.Element(titulo_html))
         
-        grupo_red_vial = folium.FeatureGroup(name=' Red Vial Real (simplificada)', show=False)
+        grupo_red_vial = folium.FeatureGroup(name=' Red Vial  (simplificada)', show=False)
         grupo_parcelas = folium.FeatureGroup(name=' Parcelas Agrícolas', show=True)
         grupo_centros = folium.FeatureGroup(name=' Centros de Acopio', show=True)
         grupo_plantas = folium.FeatureGroup(name=' Plantas Procesadoras', show=True)
         grupo_acceso = folium.FeatureGroup(name=' Accesos a Red Vial', show=True)
-        grupo_ruta = folium.FeatureGroup(name=' RUTA ÓPTIMA (Calles Reales)', show=True)
+        grupo_ruta = folium.FeatureGroup(name=' RUTA ÓPTIMA (Calles)', show=True)
         
         if ruta_vial:
             ruta_coords = set()
@@ -354,7 +354,7 @@ class VisualizadorRed:
                 <hr style="margin: 10px 0;">
                 <p style="margin: 5px 0;"><b>Elementos del mapa:</b></p>
                 <p style="margin: 3px 0;">
-                    <span style="display: inline-block; width: 30px; height: 3px; background-color: lightgray; vertical-align: middle;"></span> Red vial real<br>
+                    <span style="display: inline-block; width: 30px; height: 3px; background-color: lightgray; vertical-align: middle;"></span> Red vial <br>
                     <span style="display: inline-block; width: 30px; height: 4px; background-color: red; vertical-align: middle;"></span> <b>Ruta óptima</b><br>
                     <span style="display: inline-block; width: 30px; border-top: 2px dashed green; vertical-align: middle;"></span> Acceso a calles<br>
         '''
