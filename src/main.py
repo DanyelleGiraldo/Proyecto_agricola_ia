@@ -13,7 +13,7 @@ Desarrolladores:
 CARACTERÍSTICAS PRINCIPALES:
 
 1.  DESCARGA RED VIAL 
-   • Usa OSMnx para obtener todas las calles de Bucaramanga
+   • Usa OSMnx para obtener todas las calles de washington
    • Miles de intersecciones y calles 
    • Información completa: distancias, velocidades, tiempos
 

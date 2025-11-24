@@ -17,39 +17,35 @@ class ControladorSistema:
     
     def __init__(self):
         self.G_vial = None
-        self.nodos_santander = {}
+        self.nodos_washington = {}
         self.gestor_factores = None
         self.sistema_ia = None
         self.comparador = ComparadorAlgoritmos()
         self.inicializado = False
     
     def inicializar_sistema(self):
-        """Inicializa el sistema completo"""
         print(f"\n{'='*70}")
         print(f"INICIALIZANDO SISTEMA")
         print(f"{'='*70}")
         
-        print(f"\n[1/4] Red vial de Bucaramanga...")
-        archivo_red = "bucaramanga_floridablanca_red_vial_manzanas.graphml"
+        print(f"\n[1/4] Red vial de washington...")
+        archivo_red = "washington_completa_red_vial.graphml"
         
         if os.path.exists(archivo_red):
             print(f"    Archivo encontrado, cargando...")
             self.G_vial = DescargadorRedVial.cargar_red_guardada(archivo_red)
         else:
             print(f"     No se encontró archivo guardado, descargando...")
-            self.G_vial = DescargadorRedVial.descargar_red_bucaramanga(
-    incluir_floridablanca=False,
-    guardar=True
-)
+            self.G_vial = DescargadorRedVial.descargar_red_washington_oregon()
         
         if self.G_vial is None:
             print(f"\n Error: No se pudo obtener la red vial")
             return False
         
-        print(f"\n[2/4] Nodos de Santander...")
-        nodos_lista = IntegradorNodos.obtener_nodos_santander()
-        self.nodos_santander = {n.id: n for n in nodos_lista}
-        print(f"    {len(self.nodos_santander)} nodos cargados")
+        print(f"\n[2/4] Nodos de washington...")
+        nodos_lista = IntegradorNodos.obtener_nodos_washington()
+        self.nodos_washington = {n.id: n for n in nodos_lista}
+        print(f"    {len(self.nodos_washington)} nodos cargados")
         
         print(f"\n[3/4] Conectando nodos a red vial...")
         conexiones = IntegradorNodos.conectar_nodos_a_red_vial(
@@ -69,7 +65,7 @@ class ControladorSistema:
         print(f"\n Resumen:")
         print(f"   Red vial: {len(self.G_vial.nodes):,} intersecciones")
         print(f"   Calles: {len(self.G_vial.edges):,}")
-        print(f"   Nodos Santander: {len(self.nodos_santander)}")
+        print(f"   Nodos washington: {len(self.nodos_washington)}")
         print(f"   Conexiones exitosas: {len(conexiones)}")
         
         return True
@@ -85,7 +81,7 @@ class ControladorSistema:
         
         X, targets = self.sistema_ia.generar_dataset_multiobjetivo(
             self.G_vial,
-            self.nodos_santander,
+            self.nodos_washington,
             self.gestor_factores,
             num_escenarios=num_escenarios
         )
@@ -106,9 +102,9 @@ class ControladorSistema:
             print(f"  Sistema no inicializado")
             return None, None
         
-        ruta, info = CalculadorRutas.calcular_ruta_santander(
+        ruta, info = CalculadorRutas.calcular_ruta_washington(
             self.G_vial,
-            self.nodos_santander,
+            self.nodos_washington,
             origen_id,
             destino_id,
             self.gestor_factores
@@ -124,7 +120,7 @@ class ControladorSistema:
         
         archivo = VisualizadorRed.crear_mapa_completo(
             self.G_vial,
-            self.nodos_santander,
+            self.nodos_washington,
             ruta_vial,
             origen_id,
             destino_id,
@@ -142,7 +138,7 @@ class ControladorSistema:
         
         while True:
             print(f"\n{'='*70}")
-            print(f" MENÚ PRINCIPAL - SISTEMA IA BUCARAMANGA")
+            print(f" MENÚ PRINCIPAL - SISTEMA IA washington")
             print(f"{'='*70}")
             print(f"\n OPCIONES DISPONIBLES:\n")
             print(f"  1. Inicializar sistema (descargar red vial)")
@@ -186,14 +182,14 @@ class ControladorSistema:
                     continue
                 
                 print(f"\n Nodos disponibles:")
-                for nodo in self.nodos_santander.values():
+                for nodo in self.nodos_washington.values():
                     print(nodo.id, nodo.nombre)
                     
                 
                 origen = input("\nID nodo origen (ej: P001): ").strip().upper()
                 destino = input("ID nodo destino (ej: C001): ").strip().upper()
                 
-                if origen not in self.nodos_santander or destino not in self.nodos_santander:
+                if origen not in self.nodos_washington or destino not in self.nodos_washington:
                     print(f" Nodos inválidos")
                     continue
                 
@@ -256,7 +252,7 @@ class ControladorSistema:
                     print(f"\n Predicción de IA:")
                     features = ExtractorCaracteristicas.extraer_features(
                         self.G_vial,
-                        self.nodos_santander,
+                        self.nodos_washington,
                         origen,
                         destino,
                         self.gestor_factores
@@ -292,9 +288,9 @@ class ControladorSistema:
                 print(f"   Intersecciones: {len(self.G_vial.nodes):,}")
                 print(f"   Calles: {len(self.G_vial.edges):,}")
                 
-                print(f"\n Nodos Santander:")
+                print(f"\n Nodos washington:")
                 tipos = {}
-                for nodo in self.nodos_santander.values():
+                for nodo in self.nodos_washington.values():
                     tipos[nodo.tipo] = tipos.get(nodo.tipo, 0) + 1
                 
                 for tipo, cantidad in tipos.items():
@@ -333,7 +329,7 @@ class ControladorSistema:
                 
                 archivo = VisualizadorRed.crear_mapa_completo(
                     self.G_vial,
-                    self.nodos_santander
+                    self.nodos_washington
                 )
                 
                 if archivo:
@@ -355,13 +351,13 @@ class ControladorSistema:
                 origen = input("\nID nodo origen (ej: P001): ").strip().upper()
                 destino = input("ID nodo destino (ej: C001): ").strip().upper()
                 
-                if origen not in self.nodos_santander or destino not in self.nodos_santander:
+                if origen not in self.nodos_washington or destino not in self.nodos_washington:
                     print(f" Nodos inválidos")
                     continue
                 
                 resultados = self.comparador.comparar_todos(
                     self.G_vial,
-                    self.nodos_santander,
+                    self.nodos_washington,
                     origen,
                     destino,
                     self.sistema_ia,
@@ -387,7 +383,7 @@ class ControladorSistema:
                     num_rutas = 5
                 
                 import random
-                nodos_ids = list(self.nodos_santander.keys())
+                nodos_ids = list(self.nodos_washington.keys())
                 pares = []
                 
                 for _ in range(num_rutas):
@@ -404,7 +400,7 @@ class ControladorSistema:
                     
                     resultados = self.comparador.comparar_todos(
                         self.G_vial,
-                        self.nodos_santander,
+                        self.nodos_washington,
                         origen,
                         destino,
                         self.sistema_ia,

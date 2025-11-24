@@ -27,7 +27,7 @@ class EntrenadorIA:
     def generar_dataset_real(
         self,
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict[str, Nodo]
+        nodos_washington: Dict[str, Nodo]
     ) -> Tuple[np.ndarray, np.ndarray]:
 
         print(f"\n\n GENERANDO DATASET CON RUTAS ")
@@ -35,7 +35,7 @@ class EntrenadorIA:
         X = []
         y = []
         
-        nodos_ids = list(nodos_santander.keys())
+        nodos_ids = list(nodos_washington.keys())
         total_pares = len(nodos_ids) * (len(nodos_ids) - 1)
         
         print(f"Calculando {total_pares} rutas ...")        
@@ -50,9 +50,9 @@ class EntrenadorIA:
                     if contador % 20 == 0:
                         print(f"   Progreso: {contador}/{total_pares} ({contador*100//total_pares}%) - Exitosas: {rutas_exitosas}")
                     
-                    ruta, info = CalculadorRutas.calcular_ruta_santander(
+                    ruta, info = CalculadorRutas.calcular_ruta_washington(
                         G_vial,
-                        nodos_santander,
+                        nodos_washington,
                         origen_id,
                         destino_id
                     )
@@ -60,7 +60,7 @@ class EntrenadorIA:
                     if ruta and 'distancia_total_km' in info:
                         features = ExtractorCaracteristicas.extraer_features(
                             G_vial,
-                            nodos_santander,
+                            nodos_washington,
                             origen_id,
                             destino_id
                         )
@@ -123,7 +123,7 @@ class EntrenadorIA:
         features_scaled = self.scaler.transform(features.reshape(1, -1))
         return self.modelo.predict(features_scaled)[0]
     
-    def guardar(self, archivo: str = "modelo_ia_bucaramanga_real.pkl"):
+    def guardar(self, archivo: str = "modelo_ia_washington_real.pkl"):
         import joblib
         joblib.dump({
             'modelo': self.modelo,
@@ -133,7 +133,7 @@ class EntrenadorIA:
         }, archivo)
         print(f" Modelo guardado: {archivo}")
     
-    def cargar(self, archivo: str = "modelo_ia_bucaramanga_real.pkl"):
+    def cargar(self, archivo: str = "modelo_ia_washington_real.pkl"):
         datos = joblib.load(archivo)
         self.modelo = datos['modelo']
         self.scaler = datos['scaler']

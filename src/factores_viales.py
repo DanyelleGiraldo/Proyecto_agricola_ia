@@ -96,7 +96,6 @@ class GestorFactoresViales:
         self._actualizar_pesos_grafo()
     
     def simular_hora_pico(self, vias_principales: bool = True):
-        """Simula condiciones de hora pico"""
         print(f"\n aplicando el palo de trancon D:")
         
         afectadas = 0

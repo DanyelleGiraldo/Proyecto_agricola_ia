@@ -52,7 +52,7 @@ class IAMultiObjetivo:
     def generar_dataset_multiobjetivo(
         self,
         G_vial,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         gestor_factores,
         num_escenarios: int = 3
     ) -> Tuple[np.ndarray, Dict[str, np.ndarray]]:
@@ -67,7 +67,7 @@ class IAMultiObjetivo:
         y_riesgo = []
         y_calidad = []
         
-        nodos_ids = list(nodos_santander.keys())
+        nodos_ids = list(nodos_washington.keys())
         total_pares = len(nodos_ids) * (len(nodos_ids) - 1)
         total_calculos = total_pares * num_escenarios
         
@@ -98,9 +98,9 @@ class IAMultiObjetivo:
                               f"({contador*100//total_calculos}%) - "
                               f"Exitosas: {rutas_exitosas}")
                     
-                    ruta, info = CalculadorRutas.calcular_ruta_santander(
+                    ruta, info = CalculadorRutas.calcular_ruta_washington(
                         G_vial,
-                        nodos_santander,
+                        nodos_washington,
                         origen_id,
                         destino_id,
                         gestor_factores
@@ -111,7 +111,7 @@ class IAMultiObjetivo:
                     
                     features = ExtractorCaracteristicas.extraer_features(
                         G_vial,
-                        nodos_santander,
+                        nodos_washington,
                         origen_id,
                         destino_id,
                         gestor_factores
@@ -269,7 +269,7 @@ class IAMultiObjetivo:
         self,
         rutas_candidatas: List[Tuple[str, str]],
         G_vial,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         gestor_factores,
         prioridad: str = 'balanceado'
     ) -> Tuple[str, str, Dict]:
@@ -282,7 +282,7 @@ class IAMultiObjetivo:
         for origen_id, destino_id in rutas_candidatas:
             features = ExtractorCaracteristicas.extraer_features(
                 G_vial,
-                nodos_santander,
+                nodos_washington,
                 origen_id,
                 destino_id,
                 gestor_factores

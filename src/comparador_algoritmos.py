@@ -223,7 +223,7 @@ class ComparadorAlgoritmos:
     def visualizar_comparacion_en_mapa(
         self,
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         origen_id: str,
         destino_id: str,
         archivo: str = "comparacion_algoritmos_mapa.html"
@@ -235,8 +235,8 @@ class ComparadorAlgoritmos:
         
         print(f"\n  Generando mapa comparativo...")
         
-        nodo_o = nodos_santander[origen_id]
-        nodo_d = nodos_santander[destino_id]
+        nodo_o = nodos_washington[origen_id]
+        nodo_d = nodos_washington[destino_id]
         centro = [(nodo_o.latitud + nodo_d.latitud)/2, (nodo_o.longitud + nodo_d.longitud)/2]
         
         mapa = folium.Map(
@@ -488,7 +488,7 @@ class ComparadorAlgoritmos:
         self,
         sistema_ia,
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         origen_id: str,
         destino_id: str,
         gestor_factores
@@ -498,7 +498,7 @@ class ComparadorAlgoritmos:
         try:
             features = self._extraer_features_basicas(
                 G_vial,
-                nodos_santander,
+                nodos_washington,
                 origen_id,
                 destino_id
             )
@@ -520,9 +520,9 @@ class ComparadorAlgoritmos:
                 'riesgo': 'DESCONOCIDO'
             }
     
-    def _extraer_features_basicas(self, G_vial, nodos_santander, origen_id, destino_id):
-        nodo_o = nodos_santander[origen_id]
-        nodo_d = nodos_santander[destino_id]
+    def _extraer_features_basicas(self, G_vial, nodos_washington, origen_id, destino_id):
+        nodo_o = nodos_washington[origen_id]
+        nodo_d = nodos_washington[destino_id]
         
         features = []
         
@@ -727,7 +727,7 @@ class ComparadorAlgoritmos:
     def comparar_todos(
         self,
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         origen_id: str,
         destino_id: str,
         sistema_ia,
@@ -737,11 +737,11 @@ class ComparadorAlgoritmos:
         print(f"\n{'='*70}")
         print(f"COMPARACIÓN DE ALGORITMOS")
         print(f"{'='*70}")
-        print(f"Origen: {nodos_santander[origen_id].nombre}")
-        print(f"Destino: {nodos_santander[destino_id].nombre}")
+        print(f"Origen: {nodos_washington[origen_id].nombre}")
+        print(f"Destino: {nodos_washington[destino_id].nombre}")
         
-        origen_vial = nodos_santander[origen_id].nodo_vial_cercano
-        destino_vial = nodos_santander[destino_id].nodo_vial_cercano
+        origen_vial = nodos_washington[origen_id].nodo_vial_cercano
+        destino_vial = nodos_washington[destino_id].nodo_vial_cercano
         
         resultados = {}
         
@@ -784,7 +784,7 @@ class ComparadorAlgoritmos:
         if sistema_ia and sistema_ia.entrenado:
             print(f"\n Ejecutando IA...")
             pred_ia = self.calcular_con_ia(
-                sistema_ia, G_vial, nodos_santander,
+                sistema_ia, G_vial, nodos_washington,
                 origen_id, destino_id, gestor_factores
             )
             resultados['IA'] = {

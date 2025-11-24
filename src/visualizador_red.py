@@ -11,12 +11,12 @@ class VisualizadorRed:
     @staticmethod
     def crear_mapa_completo(
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict[str, Nodo],
+        nodos_washington: Dict[str, Nodo],
         ruta_vial: List[int] = None,
         origen_id: str = None,
         destino_id: str = None,
         info_ruta: Dict = None,
-        archivo: str = "mapa_red_real_bucaramanga.html"
+        archivo: str = "mapa_red_real_washington.html"
     ):
 
         
@@ -25,8 +25,8 @@ class VisualizadorRed:
             lons_ruta = [G_vial.nodes[n]['x'] for n in ruta_vial]
             centro = [sum(lats_ruta)/len(lats_ruta), sum(lons_ruta)/len(lons_ruta)]
         else:
-            lats = [n.latitud for n in nodos_santander.values()]
-            lons = [n.longitud for n in nodos_santander.values()]
+            lats = [n.latitud for n in nodos_washington.values()]
+            lons = [n.longitud for n in nodos_washington.values()]
             centro = [sum(lats)/len(lats), sum(lons)/len(lons)]
         
         mapa = folium.Map(
@@ -39,9 +39,9 @@ class VisualizadorRed:
         folium.TileLayer('CartoDB positron', name='Mapa Claro').add_to(mapa)
         folium.TileLayer('CartoDB dark_matter', name='Mapa Oscuro').add_to(mapa)
         
-        titulo = "Red Vial Bucaramanga y Floridablanca"
+        titulo = "Red Vial washington"
         if origen_id and destino_id:
-            titulo = f"Ruta Real: {nodos_santander[origen_id].nombre} → {nodos_santander[destino_id].nombre}"
+            titulo = f"Ruta Real: {nodos_washington[origen_id].nombre} → {nodos_washington[destino_id].nombre}"
         
         titulo_html = f'''
         <div style="position: fixed; top: 10px; left: 50px; width: auto; max-width: 500px;
@@ -53,8 +53,8 @@ class VisualizadorRed:
             </h3>
             <p style="margin: 5px 0; font-size: 13px; color: #34495e;">
                 <b>Red vial:</b> {len(G_vial.nodes):,} intersecciones, {len(G_vial.edges):,} calles<br>
-                <b>Nodos Santander:</b> {len(nodos_santander)}<br>
-                <b>Sistema:</b> Rutas sobre calles reales de Bucaramanga
+                <b>Nodos washington:</b> {len(nodos_washington)}<br>
+                <b>Sistema:</b> Rutas sobre calles reales de washington
             </p>
         '''
         
@@ -117,11 +117,11 @@ class VisualizadorRed:
                     opacity=0.3
                 ).add_to(grupo_red_vial)
         
-        print(f" Agregando nodos de Santander...")
+        print(f" Agregando nodos de washington...")
         colores = {'parcela': 'green', 'centro': 'blue', 'planta': 'red'}
         iconos = {'parcela': 'leaf', 'centro': 'home', 'planta': 'industry'}
         
-        for nodo_id, nodo in nodos_santander.items():
+        for nodo_id, nodo in nodos_washington.items():
             color = colores.get(nodo.tipo, 'gray')
             icono = iconos.get(nodo.tipo, 'info')
             

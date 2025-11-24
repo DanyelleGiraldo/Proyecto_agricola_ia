@@ -95,20 +95,20 @@ class CalculadorRutas:
             return [], float('inf'), {}
     
     @staticmethod
-    def calcular_ruta_santander(
+    def calcular_ruta_washington(
         G_vial: nx.MultiDiGraph,
-        nodos_santander: Dict[str, Nodo],
+        nodos_washington: Dict[str, Nodo],
         origen_id: str,
         destino_id: str,
         gestor_factores: GestorFactoresViales = None
     ) -> Tuple[List[int], Dict]:
 
-        if origen_id not in nodos_santander or destino_id not in nodos_santander:
+        if origen_id not in nodos_washington or destino_id not in nodos_washington:
             print(f" Nodos no válidos: {origen_id}, {destino_id}")
             return [], {}
         
-        nodo_origen = nodos_santander[origen_id]
-        nodo_destino = nodos_santander[destino_id]
+        nodo_origen = nodos_washington[origen_id]
+        nodo_destino = nodos_washington[destino_id]
         
         if nodo_origen.nodo_vial_cercano is None or nodo_destino.nodo_vial_cercano is None:
             print(f" Nodos no conectados a red vial")

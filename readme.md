@@ -1,11 +1,11 @@
-# 🚀 Sistema de Optimización de Rutas con IA - Bucaramanga
+# 🚀 Sistema de Optimización de Rutas con IA - washington
 
-Un sistema inteligente para optimización de rutas de transporte agrícola en Bucaramanga y Santander, utilizando algoritmos clásicos e Inteligencia Artificial multi-objetivo.
+Un sistema inteligente para optimización de rutas de transporte agrícola en Washington, utilizando algoritmos clásicos e Inteligencia Artificial multi-objetivo.
 
 ## 📋 Descripción del Proyecto
 
 Este sistema calcula rutas óptimas para el transporte de productos agrícolas considerando múltiples factores:
-- **Red vial real** de Bucaramanga y municipios aledaños
+- **Red vial real** de washington y municipios aledaños
 - **Factores externos**: tráfico, clima, obras, retenes
 - **Múltiples objetivos**: distancia, tiempo, riesgo, calidad
 - **Algoritmos comparativos**: Dijkstra, Bellman-Ford, A*, IA
@@ -78,7 +78,7 @@ python src/main.py
 ## 🎯 Características Principales
 
 ### 🔍 Red Vial Real
-- Descarga automática de calles de Bucaramanga desde OpenStreetMap
+- Descarga automática de calles de washington desde OpenStreetMap
 - Miles de intersecciones y calles reales
 - Información completa: distancias, velocidades, tiempos de viaje
 
@@ -109,7 +109,7 @@ python src/main.py
 ### Menú Principal
 El sistema ofrece un menú interactivo con las siguientes opciones:
 
-1. **Inicializar sistema**: Descarga la red vial de Bucaramanga
+1. **Inicializar sistema**: Descarga la red vial de washington
 2. **Entrenar IA**: Genera dataset y entrena modelos de IA
 3. **Calcular ruta específica**: Calcula y visualiza una ruta entre dos puntos
 4. **Simular factores externos**: Aplica condiciones especiales a la red vial
@@ -195,4 +195,4 @@ Las contribuciones son bienvenidas. Por favor:
 
 ---
 
-**¡Listo para optimizar rutas en Bucaramanga!** 🚀
+**¡Listo para optimizar rutas en washington!** 🚀

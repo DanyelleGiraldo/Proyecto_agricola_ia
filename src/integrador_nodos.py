@@ -5,75 +5,69 @@ import osmnx as ox
 from clases import Nodo
 
 class IntegradorNodos:
-
     
     @staticmethod
-    def obtener_nodos_santander() -> List[Nodo]:
-
+    def obtener_nodos_washington() -> List[Nodo]:
+        
         zonas = {
             'parcelas': [
-                # ZONA METROPOLITANA BUCARAMANGA
-                {'id': 'P001', 'nombre': 'Finca Los Manzanos - Bosconia', 'lat': 7.1500, 'lon': -73.0800, 'prod': 180, 'mun': 'Bucaramanga'},
-                {'id': 'P002', 'nombre': 'Huerto El Cacique - Suratá', 'lat': 7.1700, 'lon': -73.0650, 'prod': 220, 'mun': 'Bucaramanga'},
-                {'id': 'P003', 'nombre': 'Finca La Esperanza - Pantano', 'lat': 7.1800, 'lon': -73.1100, 'prod': 150, 'mun': 'Bucaramanga'},
-                {'id': 'P004', 'nombre': 'Finca Villa Rosario - Altos', 'lat': 7.0800, 'lon': -73.0500, 'prod': 280, 'mun': 'Floridablanca'},
-                {'id': 'P005', 'nombre': 'Huerto San José - Ruitoque', 'lat': 7.0950, 'lon': -73.0700, 'prod': 240, 'mun': 'Floridablanca'},
+                # YAKIMA VALLEY (Principal zona de producción)
+                {'id': 'P001', 'nombre': 'Yakima Valley Orchards - Yakima', 'lat': 46.6021, 'lon': -120.5059, 'prod': 5000, 'mun': 'Yakima'},
+                {'id': 'P002', 'nombre': 'Selah Creek Farms - Selah', 'lat': 46.6543, 'lon': -120.5301, 'prod': 4200, 'mun': 'Selah'},
+                {'id': 'P003', 'nombre': 'Naches Heights Apple Ranch', 'lat': 46.7315, 'lon': -120.6951, 'prod': 3800, 'mun': 'Naches'},
+                {'id': 'P004', 'nombre': 'Tieton Orchards Complex', 'lat': 46.7007, 'lon': -120.7551, 'prod': 4500, 'mun': 'Tieton'},
+                {'id': 'P005', 'nombre': 'Zillah Apple Farms', 'lat': 46.4018, 'lon': -120.2621, 'prod': 3500, 'mun': 'Zillah'},
                 
-                # PROVINCIA DE GARCÍA ROVIRA (Clima frío - alta producción)
-                {'id': 'P006', 'nombre': 'Finca Las Nieves - Málaga', 'lat': 6.7000, 'lon': -72.7333, 'prod': 350, 'mun': 'Málaga'},
-                {'id': 'P007', 'nombre': 'Huerto San Pablo - Concepción', 'lat': 6.7667, 'lon': -72.7000, 'prod': 320, 'mun': 'Concepción'},
-                {'id': 'P008', 'nombre': 'Finca El Alto - Carcasí', 'lat': 6.6333, 'lon': -72.6333, 'prod': 280, 'mun': 'Carcasí'},
-                {'id': 'P009', 'nombre': 'Huerto La Cumbre - San Andrés', 'lat': 6.8167, 'lon': -72.8500, 'prod': 300, 'mun': 'San Andrés'},
-                {'id': 'P010', 'nombre': 'Finca El Bosque - Cerrito', 'lat': 6.8333, 'lon': -72.6833, 'prod': 260, 'mun': 'Cerrito'},
+                # WENATCHEE VALLEY (Valle más productivo)
+                {'id': 'P006', 'nombre': 'Stemilt Orchards - Wenatchee', 'lat': 47.4235, 'lon': -120.3103, 'prod': 6000, 'mun': 'Wenatchee'},
+                {'id': 'P007', 'nombre': 'Chelan Fresh - East Wenatchee', 'lat': 47.4156, 'lon': -120.2826, 'prod': 5500, 'mun': 'East Wenatchee'},
+                {'id': 'P008', 'nombre': 'Columbia Valley Orchards', 'lat': 47.4857, 'lon': -120.2651, 'prod': 4800, 'mun': 'Wenatchee'},
+                {'id': 'P009', 'nombre': 'Cashmere Apple Farms', 'lat': 47.5223, 'lon': -120.4704, 'prod': 4000, 'mun': 'Cashmere'},
+                {'id': 'P010', 'nombre': 'Leavenworth Orchard District', 'lat': 47.5962, 'lon': -120.6615, 'prod': 3200, 'mun': 'Leavenworth'},
                 
-                # PROVINCIA DE SOTO (Zona cafetera - producción media)
-                {'id': 'P011', 'nombre': 'Finca La Pradera - Piedecuesta', 'lat': 7.0833, 'lon': -73.0500, 'prod': 200, 'mun': 'Piedecuesta'},
-                {'id': 'P012', 'nombre': 'Huerto El Roble - Girón', 'lat': 7.0667, 'lon': -73.1667, 'prod': 180, 'mun': 'Girón'},
-                {'id': 'P013', 'nombre': 'Finca Las Acacias - Lebrija', 'lat': 7.1167, 'lon': -73.2167, 'prod': 220, 'mun': 'Lebrija'},
-                {'id': 'P014', 'nombre': 'Huerto San Isidro - Rionegro', 'lat': 7.1500, 'lon': -73.1500, 'prod': 190, 'mun': 'Rionegro'},
+                # COLUMBIA BASIN (Zona en expansión)
+                {'id': 'P011', 'nombre': 'Royal Slope Orchards - Mattawa', 'lat': 46.7374, 'lon': -119.9034, 'prod': 3500, 'mun': 'Mattawa'},
+                {'id': 'P012', 'nombre': 'Quincy Valley Fruits', 'lat': 47.2340, 'lon': -119.8528, 'prod': 3200, 'mun': 'Quincy'},
+                {'id': 'P013', 'nombre': 'Moses Lake Apple Growers', 'lat': 47.1301, 'lon': -119.2781, 'prod': 2800, 'mun': 'Moses Lake'},
                 
-                # PROVINCIA DE VÉLEZ (Templado - producción diversificada)
-                {'id': 'P015', 'nombre': 'Finca El Paraíso - Vélez', 'lat': 6.0167, 'lon': -73.6667, 'prod': 240, 'mun': 'Vélez'},
-                {'id': 'P016', 'nombre': 'Huerto La Samaria - Barbosa', 'lat': 5.9333, 'lon': -73.6167, 'prod': 210, 'mun': 'Barbosa'},
-                {'id': 'P017', 'nombre': 'Finca Las Brisas - Guavatá', 'lat': 5.9500, 'lon': -73.7000, 'prod': 230, 'mun': 'Guavatá'},
-                {'id': 'P018', 'nombre': 'Huerto El Mirador - Puente Nacional', 'lat': 5.8833, 'lon': -73.6833, 'prod': 195, 'mun': 'Puente Nacional'},
+                # SPOKANE AREA (Zona este)
+                {'id': 'P014', 'nombre': 'Spokane Valley Fruits', 'lat': 47.6588, 'lon': -117.2394, 'prod': 1500, 'mun': 'Spokane Valley'},
+                {'id': 'P015', 'nombre': 'Green Bluff Orchards', 'lat': 47.7712, 'lon': -117.2371, 'prod': 1200, 'mun': 'Green Bluff'},
                 
-                # PROVINCIA DE GUANENTÁ (Altiplano - especializada)
-                {'id': 'P019', 'nombre': 'Finca La Colina - San Gil', 'lat': 6.5500, 'lon': -73.1333, 'prod': 270, 'mun': 'San Gil'},
-                {'id': 'P020', 'nombre': 'Huerto Los Pinos - Barichara', 'lat': 6.6333, 'lon': -73.2167, 'prod': 180, 'mun': 'Barichara'},
-                {'id': 'P021', 'nombre': 'Finca El Descanso - Curití', 'lat': 6.6000, 'lon': -73.0667, 'prod': 220, 'mun': 'Curití'},
-                {'id': 'P022', 'nombre': 'Huerto San Martín - Aratoca', 'lat': 6.7000, 'lon': -73.0167, 'prod': 200, 'mun': 'Aratoca'},
+                # TRI-CITIES AREA
+                {'id': 'P016', 'nombre': 'Pasco Basin Orchards', 'lat': 46.2396, 'lon': -119.1006, 'prod': 2500, 'mun': 'Pasco'},
                 
-                # PROVINCIA DE COMUNERA (Sur - emergente)
-                {'id': 'P023', 'nombre': 'Finca La Esperanza - El Guacamayo', 'lat': 6.2500, 'lon': -73.5000, 'prod': 160, 'mun': 'El Guacamayo'},
-                {'id': 'P024', 'nombre': 'Huerto San Carlos - Charalá', 'lat': 6.2833, 'lon': -73.1500, 'prod': 175, 'mun': 'Charalá'},
-                {'id': 'P025', 'nombre': 'Finca Los Laureles - Encino', 'lat': 6.1500, 'lon': -73.0833, 'prod': 190, 'mun': 'Encino'},
+                # NORTH CENTRAL WASHINGTON
+                {'id': 'P017', 'nombre': 'Okanogan Valley Apples', 'lat': 48.3651, 'lon': -119.5831, 'prod': 2000, 'mun': 'Okanogan'},
+                {'id': 'P018', 'nombre': 'Omak Fruit Company', 'lat': 48.4112, 'lon': -119.5275, 'prod': 1800, 'mun': 'Omak'},
             ],
             
             'centros': [
-                # Centros de Acopio Regionales
-                {'id': 'C001', 'nombre': 'Centroabastos Bucaramanga', 'lat': 7.1250, 'lon': -73.1100, 'mun': 'Bucaramanga'},
-                {'id': 'C002', 'nombre': 'Centro de Acopio Málaga', 'lat': 6.7000, 'lon': -72.7333, 'mun': 'Málaga'},
-                {'id': 'C003', 'nombre': 'Centro de Acopio San Gil', 'lat': 6.5500, 'lon': -73.1333, 'mun': 'San Gil'},
-                {'id': 'C004', 'nombre': 'Centro de Acopio Vélez', 'lat': 6.0167, 'lon': -73.6667, 'mun': 'Vélez'},
-                {'id': 'C005', 'nombre': 'Centro de Acopio Barrancabermeja', 'lat': 7.0667, 'lon': -73.8500, 'mun': 'Barrancabermeja'},
-                {'id': 'C006', 'nombre': 'Centro de Acopio Socorro', 'lat': 6.4667, 'lon': -73.2667, 'mun': 'Socorro'},
+                # Centros de Acopio y Distribución Principales
+                {'id': 'C001', 'nombre': 'Yakima Fruit Distribution Hub', 'lat': 46.6021, 'lon': -120.5059, 'mun': 'Yakima'},
+                {'id': 'C002', 'nombre': 'Wenatchee Valley Warehouse', 'lat': 47.4235, 'lon': -120.3103, 'mun': 'Wenatchee'},
+                {'id': 'C003', 'nombre': 'Columbia Basin Cold Storage', 'lat': 46.7374, 'lon': -119.9034, 'mun': 'Mattawa'},
+                {'id': 'C004', 'nombre': 'Seattle Distribution Center', 'lat': 47.6062, 'lon': -122.3321, 'mun': 'Seattle'},
+                {'id': 'C005', 'nombre': 'Spokane Regional Storage', 'lat': 47.6588, 'lon': -117.2394, 'mun': 'Spokane'},
+                {'id': 'C006', 'nombre': 'Tri-Cities Distribution Hub', 'lat': 46.2396, 'lon': -119.1006, 'mun': 'Pasco'},
+                {'id': 'C007', 'nombre': 'Tacoma Port Distribution', 'lat': 47.2529, 'lon': -122.4443, 'mun': 'Tacoma'},
             ],
             
             'plantas': [
-                # Plantas Procesadoras Estratégicas
-                {'id': 'PL001', 'nombre': 'Procesadora Santander - B/manga', 'lat': 7.1350, 'lon': -73.1300, 'mun': 'Bucaramanga'},
-                {'id': 'PL002', 'nombre': 'Planta de Jugos Málaga', 'lat': 6.7200, 'lon': -72.7500, 'mun': 'Málaga'},
-                {'id': 'PL003', 'nombre': 'Procesadora San Gil', 'lat': 6.5600, 'lon': -73.1400, 'mun': 'San Gil'},
-                {'id': 'PL004', 'nombre': 'Agroindustrial Vélez', 'lat': 6.0300, 'lon': -73.6700, 'mun': 'Vélez'},
+                {'id': 'PL001', 'nombre': 'Tree Top Inc. - Selah', 'lat': 46.6543, 'lon': -120.5301, 'mun': 'Selah'},
+                {'id': 'PL002', 'nombre': 'Washington Fruit Processing - Yakima', 'lat': 46.6021, 'lon': -120.5059, 'mun': 'Yakima'},
+                {'id': 'PL003', 'nombre': 'Wenatchee Packing Plant', 'lat': 47.4235, 'lon': -120.3103, 'mun': 'Wenatchee'},
+                {'id': 'PL004', 'nombre': 'Columbia River Processing', 'lat': 46.2396, 'lon': -119.1006, 'mun': 'Pasco'},
+                {'id': 'PL005', 'nombre': 'Seattle Processing Facility', 'lat': 47.6062, 'lon': -122.3321, 'mun': 'Seattle'},
             ],
             
             'mercados': [
-                # Principales Mercados de Destino
-                {'id': 'M001', 'nombre': 'Mercado Campesino B/manga', 'lat': 7.1300, 'lon': -73.1250, 'mun': 'Bucaramanga'},
-                {'id': 'M002', 'nombre': 'Plaza de Mercado San Gil', 'lat': 6.5500, 'lon': -73.1333, 'mun': 'San Gil'},
-                {'id': 'M003', 'nombre': 'Mercado Municipal Málaga', 'lat': 6.7000, 'lon': -72.7333, 'mun': 'Málaga'},
-                {'id': 'M004', 'nombre': 'Mercado Vélez', 'lat': 6.0167, 'lon': -73.6667, 'mun': 'Vélez'},
+                {'id': 'M001', 'nombre': 'Seattle Pike Place Market', 'lat': 47.6097, 'lon': -122.3422, 'mun': 'Seattle'},
+                {'id': 'M002', 'nombre': 'Spokane Public Market', 'lat': 47.6588, 'lon': -117.4260, 'mun': 'Spokane'},
+                {'id': 'M003', 'nombre': 'Yakima Farmers Market', 'lat': 46.6021, 'lon': -120.5059, 'mun': 'Yakima'},
+                {'id': 'M004', 'nombre': 'Tacoma Farmers Market', 'lat': 47.2529, 'lon': -122.4443, 'mun': 'Tacoma'},
+                {'id': 'M005', 'nombre': 'Bellingham Public Market', 'lat': 48.7519, 'lon': -122.4787, 'mun': 'Bellingham'},
+                {'id': 'M006', 'nombre': 'Tri-Cities Farmers Market', 'lat': 46.2396, 'lon': -119.1006, 'mun': 'Pasco'},
             ]
         }
         
@@ -86,7 +80,7 @@ class IntegradorNodos:
                 tipo='parcela',
                 latitud=parcela['lat'],
                 longitud=parcela['lon'],
-                produccion_esperada=parcela['prod'] 
+                produccion_esperada=parcela['prod']
             ))
         
         for centro in zonas['centros']:
@@ -107,18 +101,29 @@ class IntegradorNodos:
                 longitud=planta['lon']
             ))
         
+        for mercado in zonas['mercados']:
+            nodos.append(Nodo(
+                id=mercado['id'],
+                nombre=mercado['nombre'],
+                tipo='mercado',
+                latitud=mercado['lat'],
+                longitud=mercado['lon']
+            ))
+        
         return nodos
     
     @staticmethod
     def conectar_nodos_a_red_vial(
-        nodos_santander: List[Nodo],
+        nodos_washington: List[Nodo],
         G_vial: nx.MultiDiGraph
     ) -> Dict[str, int]:
-
         
         conexiones = {}
         
-        for nodo in nodos_santander:
+        print(f"\n🔗 Conectando nodos a la red vial de Washington...")
+        print(f"{'='*70}")
+        
+        for nodo in nodos_washington:
             nodo_vial_cercano = ox.distance.nearest_nodes(
                 G_vial,
                 nodo.longitud,
@@ -134,22 +139,31 @@ class IntegradorNodos:
             )
             
             nodo.nodo_vial_cercano = nodo_vial_cercano
-            nodo.distancia_a_vial = distancia / 1000 
+            nodo.distancia_a_vial = distancia / 1000
             
             conexiones[nodo.id] = nodo_vial_cercano
             
-            emoji = {'parcela': '🌳', 'centro': '🏪', 'planta': '🏭'}[nodo.tipo]
-            tipo_texto = {
-                'parcela': 'Finca', 
-                'centro': 'Acopio', 
-                'planta': 'Planta'
+            emoji = {
+                'parcela': '🍎',
+                'centro': '🏪',
+                'planta': '🏭',
+                'mercado': '🛒'
             }[nodo.tipo]
             
-            print(f"{emoji} {nodo.id:5} ({tipo_texto:6}) → Nodo vial {nodo_vial_cercano} ({distancia:.0f}m)")
+            tipo_texto = {
+                'parcela': 'Huerto',
+                'centro': 'Acopio',
+                'planta': 'Planta',
+                'mercado': 'Mercado'
+            }[nodo.tipo]
+            
+            print(f"{emoji} {nodo.id:5} ({tipo_texto:7}) → Nodo vial {nodo_vial_cercano} ({distancia:.0f}m)")
         
-        print(f"\n {len(conexiones)} nodos de producción conectados a la red vial")
-        print(f"    {sum(1 for n in nodos_santander if n.tipo == 'parcela')} fincas productoras")
-        print(f"    {sum(1 for n in nodos_santander if n.tipo == 'centro')} centros de acopio")
-        print(f"    {sum(1 for n in nodos_santander if n.tipo == 'planta')} plantas procesadoras")
+        print(f"\n{'='*70}")
+        print(f"✅ {len(conexiones)} nodos conectados a la red vial de Washington")
+        print(f"    🍎 {sum(1 for n in nodos_washington if n.tipo == 'parcela')} huertos de manzanas")
+        print(f"    🏪 {sum(1 for n in nodos_washington if n.tipo == 'centro')} centros de acopio")
+        print(f"    🏭 {sum(1 for n in nodos_washington if n.tipo == 'planta')} plantas procesadoras")
+        print(f"    🛒 {sum(1 for n in nodos_washington if n.tipo == 'mercado')} mercados")
         
         return conexiones

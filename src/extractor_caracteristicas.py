@@ -6,15 +6,15 @@ class ExtractorCaracteristicas:
     @staticmethod
     def extraer_features(
         G_vial,
-        nodos_santander: Dict,
+        nodos_washington: Dict,
         origen_id: str,
         destino_id: str,
         gestor_factores=None,
         hora_del_dia: int = 12
     ) -> np.ndarray:
         
-        nodo_o = nodos_santander[origen_id]
-        nodo_d = nodos_santander[destino_id]
+        nodo_o = nodos_washington[origen_id]
+        nodo_d = nodos_washington[destino_id]
         
         features = []
         
